@@ -6,27 +6,37 @@
     <title>Гэр бүл / 家族 / Family-Lesson1</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
             line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4; /* Light background for better contrast */
+            margin: 0; /* Remove default margin */
             padding: 20px;
             padding-top: 150px;
         }
         h1 {
-            color: #004080;
+            text-align: center;
+            color: #004080; /* Consistent color */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+        h2 {
+            color: #333; /* Darker color for subheadings */
+            margin-top: 30px; /* Space above subheadings */
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: white; /* White background for the table */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
         th, td {
             border: 1px solid #ccc;
-            padding: 10px;
+            padding: 12px; /* Increased padding for better spacing */
             text-align: left;
         }
         th {
-            background-color: #e0e0e0;
+            background-color: #e0e0e0; /* Light gray for headers */
+            font-weight: bold; /* Bold text for headers */
         }
         footer {
             text-align: center;
@@ -35,31 +45,42 @@
             font-size: 0.9rem;
             color: #666;
             background: #eee;
+            border-top: 1px solid #ccc; /* Top border for separation */
         }
         audio {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             width: 100%; /* Make the audio player full width */
         }
         .turn-back, .next-lesson {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #004080;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
+            position: fixed;
+            top: 20px; /* Position from the top */
+            padding: 12px 24px; /* Increased padding */
+            background-color: #0056b3; /* Professional blue shade */
+            color: white; /* White text */
+            text-decoration: none; /* No underline */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        .turn-back {
+            left: 20px; /* Position from the left */
+        }
+        .next-lesson {
+            left: 150px; /* Position next to the turn-back button */
         }
         .turn-back:hover, .next-lesson:hover {
-            background-color: #003366;
+            background-color: #004494; /* Darker shade on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
         }
-        .fixed-nav {
-            position: fixed;
-            top: 0;
+        .fixed-h1 {
+            position: fixed;    
+            top: 10px;
             left: 0;
             right: 0;
             background-color: #f9f9f9;
-            padding: 20px;
-            z-index: 1000;
+            padding: 00px;
+            z-index: 999;
         }
         .fixed-audio {
             position: fixed;
@@ -67,7 +88,7 @@
             left: 0;
             right: 0;
             background-color: #f9f9f9;
-            padding: 10px;
+            padding: 00px;
             z-index: 999;
         }
     </style>
@@ -77,13 +98,13 @@
 <body>
 
 <!-- Fixed Navigation Section -->
-<div class="fixed-nav">
+<div class="fixed-h1">
     <h1>Гэр бүл / 家族 / Family</h1>
-    <!-- Turn Back Button -->
-    <a href="index.html" class="turn-back">Буцах</a>
-    <!-- Next Lesson Button -->
-    <a href="lesson1-2.html" class="next-lesson">Дараагийн хичээл</a>
 </div>
+
+<!-- Fixed Buttons Section -->
+<a href="index.html" class="turn-back">Буцах</a>
+<a href="lesson1-2.html" class="next-lesson">Дараагийн хичээл</a>
 
 <!-- Fixed Audio Section -->
 <div class="fixed-audio">
@@ -122,7 +143,7 @@
         </tr>
         <tr>
             <td>4</td>
-            <td>家系 (かけ��) - Удам угсаа</td>
+            <td>家系 (かけい) - Удам угсаа</td>
             <td>自分のルーツを知るために、家系図を作った。<br>(Би өөрийн удам угсаагаа мэдэхийн тулд ургын бичигээ хийсэн.)</td>
         </tr>
         <tr>
@@ -187,7 +208,7 @@
         </tr>
         <tr>
             <td>17</td>
-            <td>��だる - Гуйх, шаналгах
+            <td>ねだる - Гуйх, шаналгах
             </td>
             <td>妹は父に、よくおもちゃをねだっている。<br>(Эмэгтэй дүү маань ааваас ихэвчлэн тоглоом гуйж шаналгадаг.)</td>
         </tr>
@@ -209,7 +230,7 @@
         <tr>
             <td>21</td>
             <td>反発 (はんぱつ) - Эсэргүүцэх</td>
-            <td>いつも兄に反発し��、けんかになってしまう。<br>(Үргэлж л ахыгаа эсэргүүцэж, маргалдчихдаг.)</td>
+            <td>いつも兄に反発して、けんかになってしまう。<br>(Үргэлж л ахыгаа эсэргүүцэж, маргалдчихдаг.)</td>
         </tr>
         <tr>
             <td>22</td>
@@ -291,7 +312,7 @@
 </table>
 
 <footer>
-    &copy; 2024 Kitto Katto. Бүх эрх хуулиар хамгаалагдсан.
+    &copy; 2024 Kitto Katsu. Бүх эрх хуулиар хамгаалагдсан.
 </footer>
 
 </body>
