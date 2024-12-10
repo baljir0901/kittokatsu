@@ -10,6 +10,7 @@
             line-height: 1.6;
             background-color: #f9f9f9;
             padding: 20px;
+            padding-top: 150px;
         }
         h1 {
             color: #004080;
@@ -51,25 +52,46 @@
         .turn-back:hover, .next-lesson:hover {
             background-color: #003366;
         }
+        .fixed-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 20px;
+            z-index: 1000;
+        }
+        .fixed-audio {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 10px;
+            z-index: 999;
+        }
     </style>
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<h1>Гэр бүл / 家族 / Family</h1>
+<!-- Fixed Navigation Section -->
+<div class="fixed-nav">
+    <h1>Гэр бүл / 家族 / Family</h1>
+    <!-- Turn Back Button -->
+    <a href="index.html" class="turn-back">Буцах</a>
+    <!-- Next Lesson Button -->
+    <a href="lesson1-2.html" class="next-lesson">Дараагийн хичээл</a>
+</div>
 
-<!-- Audio Section -->
-<audio controls>
-    <source src="https://www.dropbox.com/scl/fi/vyfoxefnujb3xobsk8ti3/001.mp3?rlkey=xyabwe6blvq8f69se7zn1hdbz&st=xe00lsvs&raw=1" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-<!-- Turn Back Button -->
-<a href="index.html" class="turn-back">Буцах</a>
-
-<!-- Next Lesson Button -->
-<a href="lesson1-2.html" class="next-lesson">Дараагийн хичээл</a>
+<!-- Fixed Audio Section -->
+<div class="fixed-audio">
+    <audio controls>
+        <source src="https://www.dropbox.com/scl/fi/vyfoxefnujb3xobsk8ti3/001.mp3?rlkey=xyabwe6blvq8f69se7zn1hdbz&st=xe00lsvs&raw=1" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
 
 <p>Энэ хичээлд гэр бүлтэй холбоотой үгсийг судлах болно.</p>
 
@@ -100,7 +122,7 @@
         </tr>
         <tr>
             <td>4</td>
-            <td>家系 (かけい) - Удам угсаа</td>
+            <td>家系 (かけ��) - Удам угсаа</td>
             <td>自分のルーツを知るために、家系図を作った。<br>(Би өөрийн удам угсаагаа мэдэхийн тулд ургын бичигээ хийсэн.)</td>
         </tr>
         <tr>
@@ -165,7 +187,7 @@
         </tr>
         <tr>
             <td>17</td>
-            <td>ねだる - Гуйх, шаналгах
+            <td>��だる - Гуйх, шаналгах
             </td>
             <td>妹は父に、よくおもちゃをねだっている。<br>(Эмэгтэй дүү маань ааваас ихэвчлэн тоглоом гуйж шаналгадаг.)</td>
         </tr>
@@ -187,7 +209,7 @@
         <tr>
             <td>21</td>
             <td>反発 (はんぱつ) - Эсэргүүцэх</td>
-            <td>いつも兄に反発して、けんかになってしまう。<br>(Үргэлж л ахыгаа эсэргүүцэж, маргалдчихдаг.)</td>
+            <td>いつも兄に反発し��、けんかになってしまう。<br>(Үргэлж л ахыгаа эсэргүүцэж, маргалдчихдаг.)</td>
         </tr>
         <tr>
             <td>22</td>
