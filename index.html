@@ -141,6 +141,17 @@
       color: #666;
       background: #eee;
     }
+
+    .close-btn {
+      background: none; /* No background */
+      border: none; /* No border */
+      color: #0f3861; /* Color to match the header */
+      font-size: 24px; /* Font size for the close icon */
+      position: absolute; /* Position it absolutely */
+      top: 10px; /* Distance from the top */
+      right: 10px; /* Distance from the right */
+      cursor: pointer; /* Change cursor to pointer */
+    }
   </style>
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042"
@@ -150,6 +161,7 @@
 
   <!-- Sidebar for Facebook Page Plugin -->
   <div class="sidebar">
+    <button class="close-btn" onclick="closeSidebar()">×</button> <!-- Close button -->
     <div class="fb-page" 
          data-href="https://www.facebook.com/profile.php?id=61563614079853" 
          data-tabs="timeline" 
@@ -178,14 +190,14 @@
       </nav>
     </header>
 
-    <h2>Япон хэлнийJLPT N1 3000 шинэ үгс монгол тайлбартайгаар</h2> <!-- Subtitle -->
+    <h2>Япон хэлний JLPT N1 3000 шинэ үгс монгол тайлбартайгаар</h2> <!-- Subtitle -->
     <p class="subtitle">N1 түвшний үгсийг сэдэв сэдвээр нь ангилж, жишээ өгүүлбэртэй мөн сонсох сонсголтой нь орууллаа. Бүгдэнд нь амжилт хүсье ээ.!!</p>
 
     <div class="row">
         <!-- Column 1 -->
         <div class="column">
           <div class="chapter">
-            <h3>Бүлэг 1: Хүний хоорондын харилцаа</h3>
+            <h3>Бүлэг 1: Хүн хоорондын харилцаа</h3>
             <ul>
               <li><span class="lesson">Хичээл 1:</span><a class="completed" href="lesson1-1.html">Гэр бүл / 家族 / Family</a></li>
               <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson1-2.html">Найзууд / 友人 / Friends</a></li>
@@ -281,7 +293,7 @@
               <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson9-1.html">Соёл / 文化 / Culture</a></li>
               <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson9-2.html">Худалдаа / 商業 / Commerce</a></li>
               <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson9-3.html">Худалдааны ёс зүй / 商業のマナー / Business Etiquette</a></li>
-              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson9-4.html">Уран зохиол / 文学 / Literature</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson9-4.html">Уран зохи��л / 文学 / Literature</a></li>
               <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson9-5.html">Уран сайхан / 美術 / Art</a></li>
             </ul>
           </div>
@@ -346,6 +358,11 @@
 
   <!-- Facebook SDK -->
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"></script>
+  <script>
+    function closeSidebar() {
+      document.querySelector('.sidebar').style.display = 'none'; // Hide the sidebar
+    }
+  </script>
 </body>
 <footer>
     &copy; 2024 Kitto Katsu. Бүх эрх хуулиар хамгаалагдсан.
