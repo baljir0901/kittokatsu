@@ -18,15 +18,34 @@
       background-color: #f9f9f9;
     }
 
+    /* Flex container for Facebook and header */
+    .header-fb-container {
+      display: flex;
+      align-items: flex-start; /* Align items to the top */
+      margin: 0; /* Remove margin */
+    }
+
+    /* Facebook Page Plugin */
+    .fb-page-container {
+      position: relative;
+      z-index: 1;
+      margin: 0; /* Remove margin */
+      padding: 0; /* Remove padding */
+    }
+
     /* Header */
     header {
+      position: relative;
+      z-index: 10;
       background-color: #0f3861;
       color: white;
-      padding: 10px 20px;
+      padding: 20px 486px;
+      margin-left: -1660px;
+      height: auto;
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       margin-bottom: 5px;
     }
 
@@ -34,12 +53,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%; /* Ensure nav takes full width */
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin-right: 20px;
+      margin-right: 20px; /* Adjust spacing */
       font-size: 1rem;
     }
 
@@ -124,9 +144,17 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    @media (max-width: 400px) {
       .row {
         flex-direction: column;
+      }
+
+      .header-fb-container {
+        flex-direction: column; /* Stack on smaller screens */
+      }
+
+      .fb-page-container {
+        margin-right: 0; /* Remove margin on smaller screens */
       }
     }
 
@@ -135,26 +163,55 @@
     }
 
     .not-completed {
-      color: #1c5792  /* Color for not completed lessons */
+      color: #1c5792; /* Color for not completed lessons */
+    }
+
+    .fb-page {
+      width: 100%; /* Make the Facebook page plugin take full width */
+      margin: 0 !important; /* Force margin to 0 */
+      padding: 0 !important; /* Force padding to 0 */
     }
   </style>
-  
+
   <!-- Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042"
      crossorigin="anonymous"></script>
+
+  <!-- Facebook SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"></script>
 </head>
 <body>
 
-<header>
-  <nav>
-    <h1>Kitto Katsu</h1>
-    <div>
-      <a href="#">Тест</a>
-      <a href="#">Үгс</a>
-      <a href="#">Номын сан</a>
+    <!-- Flex container for Facebook Page Plugin and Header -->
+    <div class="header-fb-container">
+        <!-- Facebook Page Plugin -->
+        <div class="fb-page fb-page-container" 
+             data-href="https://www.facebook.com/profile.php?id=61563614079853" 
+             data-tabs="timeline" 
+             data-width="" 
+             data-height="" 
+             data-small-header="false" 
+             data-adapt-container-width="true" 
+             data-hide-cover="false" 
+             data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/profile.php?id=61563614079853" 
+                       class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/profile.php?id=61563614079853">Kitto Katsu</a>
+            </blockquote>
+        </div>
+
+        <!-- Header -->
+        <header>
+          <nav>
+            <h1>Kitto Katsu pro</h1>
+            <div>
+              <!-- <a href="#">Тест</a>
+              <a href="#">Үгс</a>
+              <a href="#">Номын сан</a> -->
+            </div>
+          </nav>
+        </header>
     </div>
-  </nav>
-</header>
 
 <div class="container">
   <h2>JLPT N1 3000 шинэ үгс монгол орчуулгатайгаар</h2>
@@ -216,7 +273,7 @@
           <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson5-4.html">Ажлын хариуцлага / 責任 / Responsibility</a></li>
           <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson5-5.html">Ажлын цаг / 勤務時間 / Working Hours</a></li>
         </ul>
-      </div>
+      </div>  
 
       <div class="chapter">
         <h3>Бүлэг 6: Хотын амьдрал</h3>
@@ -257,7 +314,7 @@
       <div class="chapter">
         <h3>Бүлэг 9: Соёл</h3>
         <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson9-1.html">Соёл / 文化 / Culture</a></li>
+          <li><span class="lesson">Хич��эл 1:</span><a class="not-completed" href="lesson9-1.html">Соёл / 文化 / Culture</a></li>
           <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson9-2.html">Худалдаа / 商業 / Commerce</a></li>
           <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson9-3.html">Худалдааны ёс зүй / 商業のマナー / Business Etiquette</a></li>
           <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson9-4.html">Уран зохиол / 文学 / Literature</a></li>
@@ -281,7 +338,7 @@
         <ul>
           <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson11-1.html">Спорт / スポーツ / Sports</a></li>
           <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson11-2.html">Футбол / サッカー / Football</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson11-3.html">Сагсан бөмбөг / バスケットボール / Basketball</a></li>
+          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson11-3.html">Сагсан бөмбөг / バスケットボー / Basketball</a></li>
           <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson11-4.html">Биеийн тамир / アスリート / Athlete</a></li>
           <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson11-5.html">Тэмцээн / 競技 / Competition</a></li>
         </ul>
