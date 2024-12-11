@@ -1,104 +1,60 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3000 Үг JLPT N1</title>
+  <meta charset="UTF-8"> <!-- Character encoding for the document -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+  <title>3000 Үг JLPT N1</title> <!-- Title of the webpage -->
   <style>
     /* General Reset */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+      box-sizing: border-box; /* Include padding and border in element's total width and height */
     }
 
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f9f9f9;
+      font-family: Arial, sans-serif; /* Set font for the body */
+      line-height: 2; /* Set line height for readability */
+      background-color: #f9f9f9; /* Light background color */
+      display: flex; /* Use flexbox for layout */
     }
 
-    /* Flex container for Facebook and header */
-    .header-fb-container {
-      display: flex;
-      align-items: flex-start; /* Align items to the top */
-      margin: 0; /* Remove margin */
+    /* Sidebar for Facebook Page Plugin */
+    .sidebar {
+      position: sticky; /* Make the sidebar sticky */
+      top: 10px; /* Distance from the top of the viewport */
+      width: 300px; /* Fixed width for the sidebar */
+      padding: 20px; /* Padding inside the sidebar */
+      background-color: #fff; /* White background for the sidebar */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      margin-right: 20px; /* Space between sidebar and main content */
     }
 
-    /* Facebook Page Plugin */
-    .fb-page-container {
-      position: relative;
-      z-index: 1;
-      margin: 0; /* Remove margin */
-      padding: 0; /* Remove padding */
+    /* Main content area */
+    .main-content {
+      flex: 1; /* Allow main content to take remaining space */
+      padding: 20px; /* Padding inside the main content */
+      background: white; /* White background for main content */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     }
 
-    /* Header */
+    /* Header styles */
     header {
-      position: relative;
-      z-index: 10;
-      background-color: #0f3861;
-      color: white;
-      padding: 20px 486px;
-      margin-left: -1660px;
-      height: auto;
+      background-color: #0f3861; /* Dark blue background for header */
+      color: white; /* White text color */
+      padding: 10px 20px; /* Padding for header */
+      display: flex; /* Use flexbox for header layout */
+      justify-content: space-between; /* Space between title and nav */
+      align-items: center; /* Center items vertically */
     }
 
     header h1 {
-      font-size: 2rem;
-      margin-bottom: 5px;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%; /* Ensure nav takes full width */
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-right: 20px; /* Adjust spacing */
-      font-size: 1rem;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Main Content */
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      color: #333;
-      margin-bottom: 10px;
+      font-size: 2rem; /* Font size for the title */
     }
 
     p.subtitle {
       font-size: 1rem;
       color: #666;
-      margin-bottom: 20px;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .column {
-      flex: 1;
-      padding: 15px;
-    }
-
-    .chapter {
       margin-bottom: 20px;
     }
 
@@ -108,24 +64,24 @@
       margin-bottom: 5px;
     }
 
-    .chapter ul {
-      list-style: none;
-      padding: 0;
+    
+    .chapter {
+      margin-bottom: 20px;
     }
 
-    .chapter ul li {
-      margin-bottom: 8px;
+    nav a {
+      color: white; /* White text color for links */
+      text-decoration: none; /* Remove underline from links */
+      margin-left: 20px; /* Space between links */
     }
-
-    .chapter ul li a {
-      text-decoration: none;
-      font-size: 1rem;
+    .row {
+      display: flex;
+      flex-wrap: wrap;
     }
-
-    .chapter ul li a:hover {
-      text-decoration: underline;
+    .column {
+      flex: 1;
+      padding: 15px;
     }
-
     .lesson {
       font-weight: bold;
       display: inline-block;
@@ -133,28 +89,26 @@
       color: #333;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      padding: 10px;
-      font-size: 0.9rem;
-      color: #666;
-      background: #eee;
+    /* Remove underline from chapter links */
+    .chapter ul li a {
+      text-decoration: none; /* Remove underline from chapter links */
     }
-
+    .chapter ul li a:hover {
+      text-decoration: underline;
+    }
+    ul {
+    list-style-type: none; /* Remove bullet points */
+    padding-left: 0; /* Remove padding */
+    }
     /* Responsive Design */
-    @media (max-width: 400px) {
-      .row {
-        flex-direction: column;
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column; /* Stack sidebar and main content on smaller screens */
       }
 
-      .header-fb-container {
-        flex-direction: column; /* Stack on smaller screens */
-      }
-
-      .fb-page-container {
-        margin-right: 0; /* Remove margin on smaller screens */
+      .sidebar {
+        width: 100%; /* Full width for sidebar on small screens */
+        margin-right: 0; /* Remove right margin */
       }
     }
 
@@ -165,224 +119,220 @@
     .not-completed {
       color: #1c5792; /* Color for not completed lessons */
     }
-
-    .fb-page {
-      width: 100%; /* Make the Facebook page plugin take full width */
-      margin: 0 !important; /* Force margin to 0 */
-      padding: 0 !important; /* Force padding to 0 */
+        /* Footer */
+        footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 0.9rem;
+      color: #666;
+      background: #eee;
     }
   </style>
-
-  <!-- Google AdSense Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042"
-     crossorigin="anonymous"></script>
-
-  <!-- Facebook SDK -->
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"></script>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042"
+    crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Flex container for Facebook Page Plugin and Header -->
-    <div class="header-fb-container">
-        <!-- Facebook Page Plugin -->
-        <div class="fb-page fb-page-container" 
-             data-href="https://www.facebook.com/profile.php?id=61563614079853" 
-             data-tabs="timeline" 
-             data-width="" 
-             data-height="" 
-             data-small-header="false" 
-             data-adapt-container-width="true" 
-             data-hide-cover="false" 
-             data-show-facepile="true">
-            <blockquote cite="https://www.facebook.com/profile.php?id=61563614079853" 
-                       class="fb-xfbml-parse-ignore">
-                <a href="https://www.facebook.com/profile.php?id=61563614079853">Kitto Katsu</a>
-            </blockquote>
-        </div>
-
-        <!-- Header -->
-        <header>
-          <nav>
-            <h1>Kitto Katsu pro</h1>
-            <div>
-              <!-- <a href="#">Тест</a>
-              <a href="#">Үгс</a>
-              <a href="#">Номын сан</a> -->
-            </div>
-          </nav>
-        </header>
-    </div>
-
-<div class="container">
-  <h2>JLPT N1 3000 шинэ үгс монгол орчуулгатайгаар</h2>
-  <p class="subtitle">N1 түвшиний үгсийг сэдэв сэдэвээр нь ангилаж, жишээ өгүүлбэртэй мөн сонсох сонсголтой нь орууллаа. Бүгдэнд нь амжилт хүсье ээ.!</p>
-
-  <div class="row">
-    <!-- Column 1 -->
-    <div class="column">
-      <div class="chapter">
-        <h3>Бүлэг 1: Хүний харилцаа</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="completed" href="lesson1-1.html">Гэр бүл / 家族 / Family</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson1-2.html">Найзууд / 友人 / Friends</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson1-3.html">Танилууд / 知り合い / Acquaintances</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson1-4.html">Хайртай хүн / 恋人 / Lover</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson1-5.html">Олон төрлийн харилцаа / いろいろな関係 / Various Relationships</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 2: Амьдрал</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson2-1.html">Орон байр / 住まい / Housing</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson2-2.html">Хоол хүнс / 食事 / Food</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson2-3.html">Хоол хийх / 料理 / Cooking</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson2-4.html">Өдрийн төлөвлөгөө / 目標 / Daily Routine</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson2-5.html">Цаг хугацаа илэрхийлэх үгс / 時を表す言葉 / Words Expressing Time</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 3: Гэртээ</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson3-1.html">Орон сууц / 住まい / Residence</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson3-2.html">Гэрийн ажил / 家事 / House Chores</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson3-3.html">Нэг өдөр / 一日 / One Day</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson3-4.html">Амралт / 休日 / Holiday</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson3-5.html">Шинэ байр / 新しい家 / New Home</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 4: Сургуульд</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson4-1.html">Сургууль / 学校 / School</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson4-2.html">Хичээл хийх / 勉強 / Studying</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson4-3.html">Шалгалт / 試験 / Exam</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson4-4.html">Дээд боловсрол / 高等教育 / Higher Education</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson4-5.html">Технологи / テクノロジー / Technology</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 5: Ажлын байранд</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson5-1.html">Ажлын ярилцлага / 面接 / Job Interview</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson5-2.html">Ажлын байр / 職場 / Workplace</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson5-3.html">Тогтмол ажил / 定職 / Regular Job</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson5-4.html">Ажлын хариуцлага / 責任 / Responsibility</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson5-5.html">Ажлын цаг / 勤務時間 / Working Hours</a></li>
-        </ul>
-      </div>  
-
-      <div class="chapter">
-        <h3>Бүлэг 6: Хотын амьдрал</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson6-1.html">Хот / 都市 / City</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson6-2.html">Тээвэр / 交通 / Transportation</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson6-3.html">Нийтийн үйлчилгээ / 公共サービス / Public Services</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson6-4.html">Нийтийн газар / 公園 / Public Park</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson6-5.html">Сургууль / 学校 / School</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 7: Эрүүл мэнд</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson7-1.html">Эрүүл мэнд / 健康 / Health</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson7-2.html">Эмч / 医者 / Doctor</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson7-3.html">Эм / 薬 / Medicine</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson7-4.html">Эрүүл мэндийн даатгал / 健康保険 / Health Insurance</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson7-5.html">Эрүүл амьдрал / 健康的な生活 / Healthy Living</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Column 2 -->
-    <div class="column">
-      <div class="chapter">
-        <h3>Бүлэг 8: Байгаль орчин</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson8-1.html">Байгаль / 自然 / Nature</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson8-2.html">Байгаль хамгаалах / 環境保護 / Environmental Protection</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson8-3.html">Цэвэр ус / 清水 / Clean Water</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson8-4.html">Агаарын бохирдол / 大気汚染 / Air Pollution</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson8-5.html">Байгальд ээлтэй / 環境に優しい / Eco-friendly</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 9: Соёл</h3>
-        <ul>
-          <li><span class="lesson">Хич��эл 1:</span><a class="not-completed" href="lesson9-1.html">Соёл / 文化 / Culture</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson9-2.html">Худалдаа / 商業 / Commerce</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson9-3.html">Худалдааны ёс зүй / 商業のマナー / Business Etiquette</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson9-4.html">Уран зохиол / 文学 / Literature</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson9-5.html">Уран сайхан / 美術 / Art</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 10: Технологи</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson10-1.html">Технологи / テクノロジー / Technology</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson10-2.html">Компьютер / コンピュータ / Computer</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson10-3.html">Интернет / インターネット / Internet</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson10-4.html">Програм хангамж / ソフトウェア / Software</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson10-5.html">Гар утас / スマートフォン / Smartphone</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 11: Спорт</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson11-1.html">Спорт / スポーツ / Sports</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson11-2.html">Футбол / サッカー / Football</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson11-3.html">Сагсан бөмбөг / バスケットボー / Basketball</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson11-4.html">Биеийн тамир / アスリート / Athlete</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson11-5.html">Тэмцээн / 競技 / Competition</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 12: Аялал</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson12-1.html">Аялал / 旅行 / Travel</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson12-2.html">Зочид буудал / ホテル / Hotel</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson12-3.html">Аялалын төлөвлөгөө / 旅行計画 / Travel Plan</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson12-4.html">Тээвэр / 交通 / Transportation</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson12-5.html">Аялалын хөтөч / ガイド / Guide</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 13: Гэр бүл</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson13-1.html">Гэр бүл / 家族 / Family</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson13-2.html">Эцэг / 父 / Father</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson13-3.html">Ээж / 母 / Mother</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson13-4.html">Ах / 兄 / Older Brother</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson13-5.html">Эмэгтэй дүү / 妹 / Younger Sister</a></li>
-        </ul>
-      </div>
-
-      <div class="chapter">
-        <h3>Бүлэг 14: Хобби</h3>
-        <ul>
-          <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson14-1.html">Хобби / 趣味 / Hobby</a></li>
-          <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson14-2.html">Уран зураг / 絵画 / Painting</a></li>
-          <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson14-3.html">Уншлага / 読書 / Reading</a></li>
-          <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson14-4.html">Хөгжим / 音楽 / Music</a></li>
-          <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson14-5.html">Спорт / スポーツ / Sports</a></li>
-        </ul>
-      </div>
+  <!-- Sidebar for Facebook Page Plugin -->
+  <div class="sidebar">
+    <div class="fb-page" 
+         data-href="https://www.facebook.com/profile.php?id=61563614079853" 
+         data-tabs="timeline" 
+         data-width="" 
+         data-height="" 
+         data-small-header="false" 
+         data-adapt-container-width="true" 
+         data-hide-cover="false" 
+         data-show-facepile="true">
+      <blockquote cite="https://www.facebook.com/profile.php?id=61563614079853" class="fb-xfbml-parse-ignore">
+        <a href="https://www.facebook.com/profile.php?id=61563614079853">Kitto Katsu</a>
+      </blockquote>
     </div>
   </div>
-</div>
 
-<footer>
-  &copy; 2024 Kitto Katsu. Бүх эрх хуулиар хамгаалагдсан.
-</footer>
+  <!-- Main content area -->
+  <div class="main-content">
+    <header>
+      <h1>Kitto Katsu pro</h1> <!-- Title of the website -->
+      <nav>
+        <a href="#">Тест</a> <!-- Link to Tests -->
+        <a href="#">Үгс</a> <!-- Link to Words -->
+        <a href="#">Номын сан</a> <!-- Link to Library -->
+      </nav>
+    </header>
 
+    <h2>JLPT N1 3000 шинэ үгс монгол орчуулгатайгаар</h2> <!-- Subtitle -->
+    <p class="subtitle">N1 түвшиний үгсийг сэдэв сэдэвээр нь ангилаж, жишээ өгүүлбэртэй мөн сонсох сонсголтой нь орууллаа. Бүгдэнд нь амжилт хүсье ээ.!</p>
+
+    <div class="row">
+        <!-- Column 1 -->
+        <div class="column">
+          <div class="chapter">
+            <h3>Бүлэг 1: Хүний хоорондын харилцаа</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="completed" href="lesson1-1.html">Гэр бүл / 家族 / Family</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson1-2.html">Найзууд / 友人 / Friends</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson1-3.html">Танилууд / 知り合い / Acquaintances</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson1-4.html">Хайртай хүн / 恋人 / Lover</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson1-5.html">Олон төрлийн харилцаа / いろいろな関係 / Various Relationships</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 2: Амьдрал</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson2-1.html">Орон байр / 住まい / Housing</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson2-2.html">Хоол хүнс / 食事 / Food</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson2-3.html">Хоол хийх / 料理 / Cooking</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson2-4.html">Өдрийн төлөвлөгөө / 目標 / Daily Routine</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson2-5.html">Цаг хугацаа илэрхийлэх үгс / 時を表す言葉 / Words Expressing Time</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 3: Гэртээ</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson3-1.html">Орон сууц / 住まい / Residence</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson3-2.html">Гэрийн ажил / 家事 / House Chores</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson3-3.html">Нэг өдөр / 一日 / One Day</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson3-4.html">Амралт / 休日 / Holiday</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson3-5.html">Шинэ байр / 新しい家 / New Home</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 4: Сургуульд</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson4-1.html">Сургууль / 学校 / School</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson4-2.html">Хичээл хийх / 勉強 / Studying</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson4-3.html">Шалгалт / 試験 / Exam</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson4-4.html">Дээд боловсрол / 高等教育 / Higher Education</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson4-5.html">Технологи / テクノロジー / Technology</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 5: Ажлын байранд</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson5-1.html">Ажлын ярилцлага / 面接 / Job Interview</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson5-2.html">Ажлын байр / 職場 / Workplace</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson5-3.html">Тогтмол ажил / 定職 / Regular Job</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson5-4.html">Ажлын хариуцлага / 責任 / Responsibility</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson5-5.html">Ажлын цаг / 勤務時間 / Working Hours</a></li>
+            </ul>
+          </div>  
+    
+          <div class="chapter">
+            <h3>Бүлэг 6: Хотын амьдрал</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson6-1.html">Хот / 都市 / City</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson6-2.html">Тээвэр / 交通 / Transportation</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson6-3.html">Нийтийн үйлчилгээ / 公共サービス / Public Services</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson6-4.html">Нийтийн газар / 公園 / Public Park</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson6-5.html">Сургууль / 学校 / School</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 7: Эрүүл мэнд</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson7-1.html">Эрүүл мэнд / 健康 / Health</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson7-2.html">Эмч / 医者 / Doctor</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson7-3.html">Эм / 薬 / Medicine</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson7-4.html">Эрүүл мэндийн даатгал / 健康保険 / Health Insurance</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson7-5.html">Эрүүл амьдрал / 健康的な生活 / Healthy Living</a></li>
+            </ul>
+          </div>
+        </div>
+    
+        <!-- Column 2 -->
+        <div class="column">
+          <div class="chapter">
+            <h3>Бүлэг 8: Байгаль орчин</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson8-1.html">Байгаль / 自然 / Nature</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson8-2.html">Байгаль хамгаалах / 環境保護 / Environmental Protection</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson8-3.html">Цэвэр ус / 清水 / Clean Water</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson8-4.html">Агаарын бохирдол / 大気汚染 / Air Pollution</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson8-5.html">Байгальд ээлтэй / 環境に優しい / Eco-friendly</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 9: Соёл</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson9-1.html">Соёл / 文化 / Culture</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson9-2.html">Худалдаа / 商業 / Commerce</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson9-3.html">Худалдааны ёс зүй / 商業のマナー / Business Etiquette</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson9-4.html">Уран зохиол / 文学 / Literature</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson9-5.html">Уран сайхан / 美術 / Art</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 10: Технологи</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson10-1.html">Технологи / テクノロジー / Technology</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson10-2.html">Компьютер / コンピュータ / Computer</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson10-3.html">Интернет / インターネット / Internet</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson10-4.html">Програм хангамж / ソフトウェア / Software</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson10-5.html">Гар утас / スマートフォン / Smartphone</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 11: Спорт</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson11-1.html">Спорт / スポーツ / Sports</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson11-2.html">Футбол / サッカー / Football</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson11-3.html">Сагсан бөмбөг / バスケットボー / Basketball</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson11-4.html">Биеийн тамир / アスリート / Athlete</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson11-5.html">Тэмцээн / 競技 / Competition</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 12: Аялал</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson12-1.html">Аялал / 旅行 / Travel</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson12-2.html">Зочид буудал / ホテル / Hotel</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson12-3.html">Аялалын төлөвлөгөө / 旅行計画 / Travel Plan</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson12-4.html">Тээвэр / 交通 / Transportation</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson12-5.html">Аялалын хөтөч / ガイド / Guide</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 13: Гэр бүл</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson13-1.html">Гэр бүл / 家族 / Family</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson13-2.html">Эцэг / 父 / Father</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson13-3.html">Ээж / 母 / Mother</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson13-4.html">Ах / 兄 / Older Brother</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson13-5.html">Эмэгтэй дүү / 妹 / Younger Sister</a></li>
+            </ul>
+          </div>
+    
+          <div class="chapter">
+            <h3>Бүлэг 14: Хобби</h3>
+            <ul>
+              <li><span class="lesson">Хичээл 1:</span><a class="not-completed" href="lesson14-1.html">Хобби / 趣味 / Hobby</a></li>
+              <li><span class="lesson">Хичээл 2:</span><a class="not-completed" href="lesson14-2.html">Уран зураг / 絵画 / Painting</a></li>
+              <li><span class="lesson">Хичээл 3:</span><a class="not-completed" href="lesson14-3.html">Уншлага / 読書 / Reading</a></li>
+              <li><span class="lesson">Хичээл 4:</span><a class="not-completed" href="lesson14-4.html">Хөгжим / 音楽 / Music</a></li>
+              <li><span class="lesson">Хичээл 5:</span><a class="not-completed" href="lesson14-5.html">Спорт / スポーツ / Sports</a></li>
+        </ul>
+      </div>
+      <!-- Additional chapters can be added here -->
+    </div>
+  </div>
+
+  <!-- Facebook SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"></script>
 </body>
+<footer>
+    &copy; 2024 Kitto Katsu. Бүх эрх хуулиар хамгаалагдсан.
+  </footer>
 </html>
