@@ -3,29 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Найзууд / 友人 / Friends - Lesson 2</title>
+    <title>Найзууд / 友人 / Friend</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
             line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4; /* Light background for better contrast */
+            margin: 0; /* Remove default margin */
             padding: 20px;
+            padding-top: 150px;
         }
         h1 {
-            color: #004080;
+            text-align: center;
+            color: #004080; /* Consistent color */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+        h2 {
+            color: #333; /* Darker color for subheadings */
+            margin-top: 30px; /* Space above subheadings */
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: white; /* White background for the table */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
         th, td {
             border: 1px solid #ccc;
-            padding: 10px;
+            padding: 12px; /* Increased padding for better spacing */
             text-align: left;
         }
         th {
-            background-color: #e0e0e0;
+            background-color: #e0e0e0; /* Light gray for headers */
+            font-weight: bold; /* Bold text for headers */
         }
         footer {
             text-align: center;
@@ -34,44 +45,98 @@
             font-size: 0.9rem;
             color: #666;
             background: #eee;
+            border-top: 1px solid #ccc; /* Top border for separation */
         }
         audio {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             width: 100%; /* Make the audio player full width */
         }
-        .turn-back, .next-lesson {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #004080;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
+        .turn-back, .next-lesson, .toggle-hiragana {
+            position: fixed;
+            top: 20px; /* Position from the top */
+            padding: 12px 24px; /* Increased padding */
+            background-color: #0056b3; /* Professional blue shade */
+            color: white; /* White text */
+            text-decoration: none; /* No underline */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+            z-index: 1000; /* Ensure it stays on top */
         }
-        .turn-back:hover, .next-lesson:hover {
-            background-color: #003366;
+        .turn-back {
+            left: 20px; /* Position from the left */
+        }
+        .next-lesson {
+            left: 150px; /* Position next to the turn-back button */
+        }
+        .toggle-hiragana {
+            font-size: 16px; /* Match the font size of other buttons */
+            text-align: center; /* Center the text */
+            line-height: normal; /* Ensure normal line height */
+            left: 370px; /* Position next to the next-lesson button */
+            background: #0056b3; /* Same background color */
+            border: none; /* Remove default border */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+        .turn-back:hover, .next-lesson:hover, .toggle-hiragana:hover {
+            background-color: #004494; /* Darker shade on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+        .fixed-h1 {
+            position: fixed;    
+            top: 10px;
+            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 00px;
+            z-index: 999;
+        }
+        .fixed-audio {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 00px;
+            z-index: 999;
         }
     </style>
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042" crossorigin="anonymous"></script>
+    <script>
+        function toggleHiragana() {
+            const hiraganaElements = document.querySelectorAll('.hiragana');
+            hiraganaElements.forEach(element => {
+                if (element.style.display === 'none') {
+                    element.style.display = 'inline'; // Show Hiragana
+                } else {
+                    element.style.display = 'none'; // Hide Hiragana
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
-<h1>Найзууд / 友人 / Friends</h1>
+<!-- Fixed Navigation Section -->
+<div class="fixed-h1">
+    <h1>Найзууд / 友人 / Friend</h1>
+</div>
 
-<!-- Audio Section -->
-<!-- 
-    <source src="https://www.dropbox.com/scl/fi/vyfoxefnujb3xobsk8ti3/001.mp3?rlkey=xyabwe6blvq8f69se7zn1hdbz&st=xe00lsvs&raw=1" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio> -->
-
-<!-- Turn Back Button -->
+<!-- Fixed Buttons Section -->
 <a href="index.html" class="turn-back">Буцах</a>
-
-<!-- Next Lesson Button -->
 <a href="lesson1-3.html" class="next-lesson">Дараагийн хичээл</a>
+<button class="toggle-hiragana" onclick="toggleHiragana()">フリガナ-г харуулах/нуух</button>
 
-<p>Хичээл удахгүй орох тул түр хүлээгээрэй</p>
+<!-- Fixed Audio Section -->
+<div class="fixed-audio">
+    <audio controls>
+        <source src="https://www.dropbox.com/scl/fi/h10psjeiyvrnc8aq1fbzb/002.mp3?rlkey=fvtbnzxeoek6y21e101zis7i2&st=zsdki89o&dl=0" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+<p>Энэ хичээлд найз нөхөдтэй холбоотой үгсийг судлах болно.</p>
 
 <h2>Түлхүүр үгс:</h2>
 <table>
@@ -80,13 +145,140 @@
             <th>#</th>
             <th>Шинэ үгс</th>
             <th>Жишээ өгүүлбэр</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>かけがえのない<span class="hiragana">-かけがえのない</span> - Үнэлж баршгүй</td>
+            <td>彼は私にとってかけがえのない存在だ。<br><span class="hiragana">(かれ&nbsp;は&nbsp;わたし&nbsp;にとって&nbsp;かけがえのない&nbsp;そんざい&nbsp;だ)</span><br>(Тэр миний хувьд үнэлж баршгүй хүн.)</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>気が置けない - <span class="hiragana">きがおけない</span> - Дотно, хялбархан, цаанаа юм бодоод байдаггүй.</td>
+            <td>気が置けない仲間と過ごす時間が一番だ。<br><span class="hiragana">(き&nbsp;が&nbsp;おけない&nbsp;なかま&nbsp;とすごす&nbsp;じかん&nbsp;が&nbsp;いちばん&nbsp;だ)</span><br>(Дотно найз нартайгаа өнгөрүүлэх цаг хамгийн сайн.)</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>気心 - <span class="hiragana">きこころ</span> - Сэтгэл, зан чанар</td>
+            <td>彼女とは気心が知れた仲だ。<br><span class="hiragana">(かのじょ&nbsp;とは&nbsp;きこころ&nbsp;がしれた&nbsp;なかだ)</span><br>(Тэр охин бол миний зан чанарыг мэддэг найз минь.)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>打ち明ける - <span class="hiragana">うちあける</span> - Сэтгэлээ нээх, сэтгэлээ онгойлгох, нууцаа хэлэх</td>
+            <td>親友にだけ悩みを打ち明けた。<br><span class="hiragana">(しんゆう&nbsp;にだけ&nbsp;なやみ&nbsp;を&nbsp;うちあけた)</span><br>(Би зөвхөн миний хамгийн сайн найздаа зовлонгоо ярьсан.)</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>察する - <span class="hiragana">さっする</span> - Ойлгох, мэдрэх</td>
+            <td>友人は私の気持ちを察してくれた。<br><span class="hiragana">(ゆうじん&nbsp;は&nbsp;わたし&nbsp;の&nbsp;きもち&nbsp;を&nbsp;さっし&nbsp;てくれた)</span><br>(Найз маань миний сэтгэл санааг ойлгож өгсөн.)</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>同い年 - <span class="hiragana">おないどし</span> - Нэг үеийн</td>
+            <td>彼は私と同い年とは思えないくらい若い。<br><span class="hiragana">(かれ&nbsp;は&nbsp;わたし&nbsp;と&nbsp;おないどし&nbsp;とは&nbsp;おも&nbsp;えないくらい&nbsp;わかい)</span><br>(Тэр надтай нэг үеийн хүн шиг бодогдохооргүй залуухан ш дээ.)</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>連中 - <span class="hiragana">れんちゅう</span> - Групп, бүлэг</td>
+            <td>もうあんな連中と付き合うのはやめよう。<br><span class="hiragana">(もうあんな&nbsp;れんちゅう&nbsp;と&nbsp;つきあう&nbsp;のはやめよう)</span><br>(Иймэрхүү бүлэг хүмүүстэй нийлж байхаа больё.)</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>呼び捨て - <span class="hiragana">よびすて</span> -　Шууд зөвхөн нэрээр нь дуудах, さん、くん、ちゃん　залгахгүй дуудах бүтүүлэг хэрэг</td>
+            <td>あんな人に呼び捨てにされたくない。<br><span class="hiragana">(あんな&nbsp;ひと&nbsp;に&nbsp;よびすてにされたくない)</span><br>(Тийм хүнд шууд  дан нэрээрээ дуудагдаад баймааргүй байна.)</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>身の上 - <span class="hiragana">みのうえ</span> - Амьдралынхаа талаар</td>
+            <td>お酒を飲みながら、お互いの身の上を話した。<br><span class="hiragana">(お&nbsp;さけ&nbsp;をの&nbsp;みながら、おたがい&nbsp;のみのうえ&nbsp;をはな&nbsp;した)</span><br>(Бид архи ууж байхдаа амьдралынхаа талаар ярьсан.)</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>徹する - <span class="hiragana">てっする</span> - зориулах</td>
+            <td>友達との飲み会では、私は聞き役に徹する。<br><span class="hiragana">(ともだち&nbsp;との&nbsp;の&nbsp;みかいでは、わたしは&nbsp;ききやく&nbsp;にてっする)</span><br>(Би найзуудтайгаа уухаараа сонсогч тал нь болчихдог.)</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>踏みにじる - <span class="hiragana">ふみにじる</span> - зөрчих, халдах, уландаа гишгих</td>
+            <td>大切な友人の思いを踏みにじってしまった。<br><span class="hiragana">(たいせつな&nbsp;ゆうじん&nbsp;のおも&nbsp;いをふみにじってしまった)</span><br>(Би чухал найзынхаа сэтгэлийг ньгомдоочихсон.)</td>
+        </tr>
+        <tr>
 
+            <td>12</td>
+            <td>気に障る - <span class="hiragana">きにさわる</span> - Сэтгэлд эвгүй, уур хүрэх</td>
+            <td>あいつは時々、人の気に障ることを言う。<br><span class="hiragana">(あいつは&nbsp;ときどき、ひと&nbsp;のき&nbsp;にさわることをいう)</span><br>(Тэр заримдаа хүмүүсийн уур хүргэх зүйлсийг хэлдэг.)</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>きまり（が）悪い - <span class="hiragana">きまりがわるい</span> - Ичих, санаа зовох</td>
+            <td>小さなことで腹を立てて、きまり悪い。<br><span class="hiragana">(ちい&nbsp;さなことではらをたて&nbsp;て、きまりがわるい)</span><br>(Би жижиг зүйлсээс болж уурласандаа санаа зовсон)</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>たかが - <span class="hiragana">たかが</span> - Ердөө</td>
+            <td>友達からお金を借りたら、たかが100円でも返すべきだ。<br><span class="hiragana">(ともだち&nbsp;からおかね&nbsp;をかりたら、たかが100えんでもかえすべきだ)</span><br>(Хэрвээ найздаа мөнгө зээлбэл, ердөө 100 иен байлаа ч гэсэн буцааж өгөх ёстой.)</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>かばう - <span class="hiragana">かばう</span> - Хамгаалах</td>
+            <td>親友はどんな時でも私をかばってくれる。<br><span class="hiragana">(しんゆう&nbsp;はどんなとき&nbsp;きで&nbsp;もわたし&nbsp;をかばってくれる)</span><br>(Миний хамгийн сайн найз намайг ямар ч үед хамгаалдаг.)</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>あえて - <span class="hiragana">あえて</span> - албаар</td>
+            <td>友達だからこそ、あえて厳しい忠告もする。<br><span class="hiragana">(ともだち&nbsp;だからこそ、あえて&nbsp;きび&nbsp;しい&nbsp;ちゅうこく&nbsp;もする)</span><br>(Найз минь учраас албаар чанга хатуу зөвлөгөө өгдөг)</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>頻繁な - <span class="hiragana">ひんぱんな</span> - Тогтмол, байнга</td>
+            <td>大学代の友人たちと頻繁に集まっている。<br><span class="hiragana">(だいがくじだい&nbsp;の&nbsp;ゆうじんたち&nbsp;と&nbsp;ひんぱん&nbsp;に&nbsp;あつまっている)</span><br>(Би их сургуулийн найзуудаараа тогтмол уулздаг.)</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>タイミング - <span class="hiragana">タイミング</span> - Цаг хугацаа</td>
+            <td>友達を食事に誘ったが、タイミングが悪く断られた。<br><span class="hiragana">(ゆうじん&nbsp;を&nbsp;しょくじ&nbsp;に&nbsp;さそ&nbsp;ったが、タイミングが&nbsp;わる&nbsp;くことわられた)</span><br>(Би найзаа хоолонд урих гэж оролдсон боловч цаг хугацаа нь таарахгүй байгаад татгалзсан)</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>じゃんけん - <span class="hiragana"></span> - Хайч чулуу даавуу</td>
+            <td>今度の飲み会の幹事を、じゃんけんで決めよう。<br><span class="hiragana">(こんど&nbsp;の&nbsp;の&nbsp;みかい&nbsp;のかんじ&nbsp;を、じゃんけん&nbsp;できめよう)</span><br>(Бид энэ удаагийн уулзалтын зохион байгуулагчийг хайч чулуу даавуу тоглож шийдье.)</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>[お]あいこ - <span class="hiragana"></span> - Тэнцэх, ничих</td>
+            <td>何回じゃんけんしてもあいこで、勝負がつかない。<br><span class="hiragana">(なんかい&nbsp;じゃんけんしてもあいこで、しょうぶ&nbsp;がつかない)</span><br>(Бид хичнээн удаа ч хайч чулуу даавуудсан ч тэнцээд байсан.)</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>つながる - <span class="hiragana"></span> - Холбогдох</td>
+            <td>ＳＮＳで、音信不通だった友人とつながるようになった。<br><span class="hiragana">(ＳＮＳで、おんしん&nbsp;ふつう&nbsp;だった&nbsp;ゆうじん&nbsp;とつながるようになった)</span><br>(Би SNS-ээр сураг алдарсан найзтайгаа холбогдсон.)</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>やたら - <span class="hiragana"></span> - Бодлогогүй, дэндүү, хэтэрхий </td>
+            <td>彼はお酒を飲むと、やたらとうるさい。<br><span class="hiragana">(かれ&nbsp;おはさけ&nbsp;を&nbsp;のみむと、やたらとうるさい)</span><br>(Тэр архи уухаараа дэндүү ядаргаатй.)</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>さぞ - <span class="hiragana"></span> - Яахын аргагүй</td>
+            <td>彼女の服は全部ブランド品だ。さぞお金持ちなのだろう。<br><span class="hiragana">(かのじょ&nbsp;のふく&nbsp;は&nbsp;ぜんぶ&nbsp;ブランド&nbsp;ひん&nbsp;だ。さぞ&nbsp;おかねもち&nbsp;なのだろう)</span><br>(Түүний хувцас бүгд брэндийнх. Яалтчгүй баян байх өө.)</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>そもそも - <span class="hiragana"></span> - Анх, эхэнд</td>
+            <td>また友達とけんかした。そもそも彼の一言が原因だ。<br><span class="hiragana">(またともだち&nbsp;とけんかした。そもそもかれ&nbsp;の&nbsp;ひとこと&nbsp;がげんいん&nbsp;だ)</span><br>(Би дахин найзтайгаа марглдсан. Эхлээд түүний нэг үг л шалтгаан болсон.)</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td>よもや - <span class="hiragana"></span> - Хэзээ ч </td>
+            <td>彼女が恋人になるとはよもや思わなかった。<br><span class="hiragana">(かのじょ&nbsp;が&nbsp;こいびと&nbsp;になるとはよもや&nbsp;おもわなかった)</span><br>(Би хэзээ ч тэр миний найз охин болно гэж бодоогүй.)</td>
         </tr>
     </tbody>
 </table>
 
 <footer>
-    &copy; 2024 Kitto Katto. Бүх эрх хуулиар хамгаалагдсан.
+    &copy; 2024 Kitto Katsu. Бүх эрх хуулиар хамгаалагдсан.
 </footer>
 
 </body>
