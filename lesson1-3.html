@@ -1,93 +1,995 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="ja">
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Танилууд / 知り合い / Acquaintances - Lesson 3</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            padding: 20px;
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Kittokatsu.pro">
+    <title>Танилууд / 知り合い / Acquaintances</title>
+
+    <!-- Bootstrap CSS (needed for styling) -->
+    <link rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
+        crossorigin="anonymous">
+
+    <!-- Custom Styles for Japanese Text Features -->
+    <style type="text/css">
+        .is-no-ruby rt {
+            visibility: hidden;
         }
-        h1 {
-            color: #004080;
+
+        .hide-word,
+        .hide-furigana,
+        .hide-meaning {
+            filter: blur(0.5rem);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+
+        /* Dark Mode Styles */
+        [data-theme="dark"] {
+            background-color: #222;
+            color: #eee;
         }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
+
+        [data-theme="dark"] .navbar {
+            background-color: #333 !important;
         }
-        th {
-            background-color: #e0e0e0;
+
+        [data-theme="dark"] .table {
+            color: #eee;
         }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 0.9rem;
-            color: #666;
-            background: #eee;
+
+        [data-theme="dark"] .bg-light {
+            background-color: #333 !important;
+        }
+
+        [data-theme="dark"] .text-muted {
+            color: #aaa !important;
+        }
+
+        [data-theme="dark"] .table-hover tbody tr:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,.075);
+        }
+
+        [data-theme="dark"] a {
+            color: #79b8ff;
+        }
+
+        [data-theme="dark"] .btn-outline-light {
+            color: #eee;
+            border-color: #eee;
+        }
+
+        [data-theme="dark"] .form-control {
+            background-color: #333;
+            border-color: #444;
+            color: #eee;
         }
         audio {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             width: 100%; /* Make the audio player full width */
         }
         .turn-back, .next-lesson {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #004080;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
+            position: fixed;
+            top: 20px; /* Position from the top */
+            padding: 12px 24px; /* Increased padding */
+            background-color: #0056b3; /* Professional blue shade */
+            color: white; /* White text */
+            text-decoration: none; /* No underline */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        .turn-back {
+            top: 60px;
+            left: 20px; /* Position from the left */
+        }
+        .next-lesson {
+            top: 60px;
+            left: 120px; /* Position next to the turn-back button */
         }
         .turn-back:hover, .next-lesson:hover {
-            background-color: #003366;
+            background-color: #004494; /* Darker shade on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+        .fixed-h1 {
+            position: relative;    
+            top: 0px;
+            left: 320px;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 0px;
+            margin: 20px, 20px;
+            z-index: 999;
+        }
+        .fixed-audio {
+            position: fixed;
+            top: 110px;
+            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 00px;
+            z-index: 999;
         }
     </style>
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239836668091042" crossorigin="anonymous"></script>
+    <script>
+        function toggleHiragana() {
+            const hiraganaElements = document.querySelectorAll('.hiragana');
+            hiraganaElements.forEach(element => {
+                if (element.style.display === 'none') {
+                    element.style.display = 'inline'; // Show Hiragana
+                } else {
+                    element.style.display = 'none'; // Hide Hiragana
+                }
+            });
+        }
+    </script>
+    </style>
 </head>
 <body>
 
-<h1>Танилууд / 知り合い / Acquaintances</h1>
+    <!-- Fixed Navigation Section -->
+<div class="fixed-h1">
+    <h1>Танилууд / 知り合い / Acquaintances</h1>
+</div>
 
-<!-- Audio Section -->
-<!-- 
-    <source src="https://www.dropbox.com/scl/fi/vyfoxefnujb3xobsk8ti3/001.mp3?rlkey=xyabwe6blvq8f69se7zn1hdbz&st=xe00lsvs&raw=1" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio> -->
-
-<!-- Turn Back Button -->
+<!-- Fixed Buttons Section -->
 <a href="index.html" class="turn-back">Буцах</a>
-
-<!-- Next Lesson Button -->
 <a href="lesson1-4.html" class="next-lesson">Дараагийн хичээл</a>
 
-<p>Хичээл удахгүй орох тул түр хүлээгээрэй</p>
+<!-- Fixed Audio Section -->
+<div class="fixed-audio">
+    <audio controls>
+        <source src="https://www.dropbox.com/scl/fi/7dpklqj4equw585s9e1lt/003.mp3?rlkey=7hx54ezie83via9zjntmf47wt&st=6ov4cz3c&dl=1" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+    <!-- Navigation Header -->
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+        <a class="navbar-brand mr-0 mr-md-2" href="/">Kittokatsu</a>
+        
+        <div class="navbar-nav-scroll">
+            <ul class="navbar-nav bd-navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Нүүр</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/lesson1-1.html">Хичээл 1-1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/lesson1-2.html">Хичээл 1-2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/lesson1-3.html">Хичээл 1-3</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Add this after the navbar-nav list -->
+        <div class="ml-auto">
+            <button id="darkModeToggle" class="btn btn-outline-light">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
 
-<h2>Түлхүүр үгс:</h2>
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Шинэ үгс</th>
-            <th>Жишээ өгүүлбэр</th>
+    <!-- Main Content Container -->
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+            <main class="col-12 bd-content" role="main">
+                <!-- Title Section -->
+                <h1 class="bd-title">
+                    <small>JLPT N1 - Танил хүмүүстэй холбоотой үг</small>
+                </h1>
+                <p><br>
+                    <a href="/index.html" class="text-info text-decoration-none">Япон хэлний JLPT N1 3000 шинэ үгс монгол тайлбартайгаар</a>
+                    <span> | </span>
+                    <span>Бүлэг 1</span>
+                    <span> | </span>
+                    <span>Хичээл 3</span>
+                </p>
 
-        </tr>
-    </tbody>
-</table>
+                <!-- Vocabulary Controls -->
+                <div class="row justify-content-md-center">
+                    <div class="table-responsive col-12 col-md-9">
+                        <div class="row">
+                            <div class="col">
+                                <div class="custom-control custom-switch custom-control-inline float-right">
+                                    <input type="checkbox" class="custom-control-input" id="showFurigana" checked>
+                                    <label class="custom-control-label" for="showFurigana">
+                                        <small>Furigana харуулах</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-<footer>
-    &copy; 2024 Kitto Katto. Бүх эрх хуулиар хамгаалагдсан.
-</footer>
+                        <!-- Hide/Show Buttons -->
+                        <div class="btn-group" role="group" aria-label="Hide Vocabulary">
+                            <button type="button" class="btn btn-secondary" id="hide-word">Үгийг нуух</button>
+                            <button type="button" class="btn btn-secondary" id="hide-furigana">Furigana нуух</button>
+                            <button type="button" class="btn btn-secondary" id="hide-meaning">Орчуулга нуух</button>
+                            <button type="button" class="btn btn-secondary" id="show-all">Бүгдийг харуулах</button>
+                        </div>
 
+                        <!-- Vocabulary Table -->
+                        <table class="table table-hover mt-2" id="vocabularyTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="d-none d-sm-block text-center">#</th>
+                                    <th scope="col">Үг</th>
+                                    <th scope="col">Жишээ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- First Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        1
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word1.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word1" class="text-danger">縁</small></h5>
+                                        <small id="furigana1">えん</small>
+                                        <br>
+                                        <span id="meaning1">Хувь заяа, холбоо, харилцаа</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            ①<ruby><rb>彼女</rb><rp>（</rp><rt>かのじょ</rt><rp>）</rp></ruby>とはバイトが<ruby><rb>縁</rb><rp>（</rp><rt>えん</rt><rp>）</rp></ruby>で<ruby><rb>知り合</rb><rp>（</rp><rt>しりあ</rt><rp>）</rp></ruby>った。
+                                            <br>
+                                            ②あんな<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>とは<ruby><rb>今</rb><rp>（</rp><rt>いま</rt><rp>）</rp></ruby>すぐにでも<ruby><rb>縁</rb><rp>（</rp><rt>えん</rt><rp>）</rp></ruby>を<ruby><rb>切</rb><rp>（</rp><rt>き</rt><rp>）</rp></ruby>りたい。
+                                        </p>
+                                        <span>①Түүнтэй цагийн ажлаар харилцаагаар танилцсан. ②Тийм хүнтэй одоо л харилцаагаа таслахыг хүсч байна.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Second Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        2
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word2.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word2" class="text-danger">一見＜する＞</small></h5>
+                                        <small id="furigana2">いっけん＜する＞</small>
+                                        <br>
+                                        <span id="meaning2">Анх хараад,хальт харахад</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            あの<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>は<ruby><rb>一見</rb><rp>（</rp><rt>いっけん</rt><rp>）</rp></ruby><ruby><rb>怖</rb><rp>（</rp><rt>こわ</rt><rp>）</rp></ruby>そうだが、<ruby><rb>面白</rb><rp>（</rp><rt>おもしろ</rt><rp>）</rp></ruby>い<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>だ。
+                                        </p>
+                                        <span>Тэр хүнийг анх харахад аймаар харагдсан ч хөгжилтэй хүн.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Third Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        3
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word3.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word3" class="text-danger">恐縮＜する＞</small></h5>
+                                        <small id="furigana3">きょうしゅく＜する＞</small>
+                                        <br>
+                                        <span id="meaning3">их баярлалаа төвөг удсан д уучлаарай</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            わざわざお<ruby><rb>電話</rb><rp>（</rp><rt>でんわ</rt><rp>）</rp></ruby>をいただき、<ruby><rb>恐縮</rb><rp>（</rp><rt>きょうしゅく</rt><rp>）</rp></ruby>です。
+                                        </p>
+                                        <span>Цаг гаргаж утасдсанд маш их баярлалаа. </span>
+                                    </td>
+                                </tr>
+
+                                <!-- Fourth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        4
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word4.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word4" class="text-danger">思いやり</small></h5>
+                                        <small id="furigana4">おもいやり</small>
+                                        <br>
+                                        <span id="meaning4">Халамж, анхаарал, өрөвч сэтгэл</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼女</rb><rp>（</rp><rt>かのじょ</rt><rp>）</rp></ruby>は<ruby><rb>誰</rb><rp>（</rp><rt>だれ</rt><rp>）</rp></ruby>に対しても<ruby><rb>思</rb><rp>（</rp><rt>おも</rt><rp>）</rp></ruby>いやりを<ruby><rb>持</rb><rp>（</rp><rt>も</rt><rp>）</rp></ruby>って<ruby><rb>接</rb><rp>（</rp><rt>せっ</rt><rp>）</rp></ruby>する。
+                                        </p>
+                                        <span>Тэр хэнтэй ч өрөвч сэтгэлээр харьцдаг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Fifth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        5
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word5.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word5" class="text-danger">気配り＜する＞</small></h5>
+                                        <small id="furigana5">きくばり＜する＞</small>
+                                        <br>
+                                        <span id="meaning5">Анхаарал халамж тавих</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            みんなが<ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>のことを<ruby><rb>気配</rb><rp>（</rp><rt>きくば</rt><rp>）</rp></ruby>りができる<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>だと<ruby><rb>言</rb><rp>（</rp><rt>い</rt><rp>）</rp></ruby>う。
+                                        </p>
+                                        <span>Бүгд түүнийг бусдад анхаарал халамж тавьдаг хүн гэж хэлдэг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Sixth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        6
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word6.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word6" class="text-danger">打ち解ける</small></h5>
+                                        <small id="furigana6">うちとける</small>
+                                        <br>
+                                        <span id="meaning6">Дотно болох, нээлттэй харьцах</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>とは<ruby><rb>初</rb><rp>（</rp><rt>はじ</rt><rp>）</rp></ruby>めて<ruby><rb>会</rb><rp>（</rp><rt>あ</rt><rp>）</rp></ruby>ったが、すぐに<ruby><rb>打ち解</rb><rp>（</rp><rt>うちと</rt><rp>）</rp></ruby>けることができた。
+                                        </p>
+                                        <span>Анх удаа уулзсан ч шууд л нээлттэй харьцаж чадсан.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Seventh Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        7
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word7.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word7" class="text-danger">好意</small></h5>
+                                        <small id="furigana7">こうい</small>
+                                        <br>
+                                        <span id="meaning7">Сайн санаа, элэгсэг байдал</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>初</rb><rp>（</rp><rt>はじ</rt><rp>）</rp></ruby>めて<ruby><rb>会</rb><rp>（</rp><rt>あ</rt><rp>）</rp></ruby>ったときから、<ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>に<ruby><rb>好意</rb><rp>（</rp><rt>こうい</rt><rp>）</rp></ruby>を<ruby><rb>抱</rb><rp>（</rp><rt>だ</rt><rp>）</rp></ruby>いている。
+                                        </p>
+                                        <span>Анх уулзсан цагаас л түүнд элэгсэг ханддаг болсон.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Eighth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        8
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word8.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word8" class="text-danger">色気</small></h5>
+                                        <small id="furigana8">いろけ</small>
+                                        <br>
+                                        <span id="meaning8">Дур булаам, хүний анхаарал татахуйц</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            あの<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>は<ruby><rb>色気</rb><rp>（</rp><rt>いろけ</rt><rp>）</rp></ruby>があって、<ruby><rb>同性</rb><rp>（</rp><rt>どうせい</rt><rp>）</rp></ruby>から<ruby><rb>見</rb><rp>（</rp><rt>み</rt><rp>）</rp></ruby>ても<ruby><rb>魅力</rb><rp>（</rp><rt>みりょく</rt><rp>）</rp></ruby><ruby><rb>的</rb><rp>（</rp><rt>てき</rt><rp>）</rp></ruby>だ。
+                                        </p>
+                                        <span>Тэр маш дур булаам, ижил хүйсийн хүний ч сэтгэлийг татам байдаг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Ninth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        9
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word9.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word9" class="text-danger">見栄</small></h5>
+                                        <small id="furigana9">みえ</small>
+                                        <br>
+                                        <span id="meaning9">Гадаад төрх, дүр төрх, харагдах байдал</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>好</rb><rp>（</rp><rt>す</rt><rp>）</rp></ruby>きな<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>の<ruby><rb>前</rb><rp>（</rp><rt>まえ</rt><rp>）</rp></ruby>では<ruby><rb>見栄</rb><rp>（</rp><rt>みえ</rt><rp>）</rp></ruby>を<ruby><rb>張</rb><rp>（</rp><rt>は</rt><rp>）</rp></ruby>りたがるものだ。
+                                        </p>
+                                        <span>Хайртай хүнийхээ өмнө сайхан харагдахыг хүсдэг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Tenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        10
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word10.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word10" class="text-danger">見栄っ張り</small></h5>
+                                        <small id="furigana10">みえっぱり</small>
+                                        <br>
+                                        <span id="meaning10">Гоё царайлах дуртай, бардам зан</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>があれほど<ruby><rb>見栄っ張</rb><rp>（</rp><rt>みえっぱ</rt><rp>）</rp></ruby>りだとは<ruby><rb>思</rb><rp>（</rp><rt>おも</rt><rp>）</rp></ruby>わなかった。
+                                        </p>
+                                        <span>Тэр хүн тийм их эрхэмсэг бардам зан гаргана гэж бодоогүй.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Eleventh Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        11
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word11.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word11" class="text-danger">人違い</small></h5>
+                                        <small id="furigana11">ひとちがい</small>
+                                        <br>
+                                        <span id="meaning11">Хүн андуурах</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>知り合</rb><rp>（</rp><rt>しりあ</rt><rp>）</rp></ruby>いだと<ruby><rb>思</rb><rp>（</rp><rt>おも</rt><rp>）</rp></ruby>って<ruby><rb>声</rb><rp>（</rp><rt>こえ</rt><rp>）</rp></ruby>をかけたら、<ruby><rb>人違</rb><rp>（</rp><rt>ひとちが</rt><rp>）</rp></ruby>いだった。
+                                        </p>
+                                        <span>Танил хүн гэж бодоод дуудсан чинь өөр хүн байсан.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Twelfth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        12
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word12.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word12" class="text-danger">勘違い＜する＞</small></h5>
+                                        <small id="furigana12">かんちがい＜する＞</small>
+                                        <br>
+                                        <span id="meaning12">Буруу ойлгох, андуурах</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>は<ruby><rb>彼女</rb><rp>（</rp><rt>かのじょ</rt><rp>）</rp></ruby>の<ruby><rb>優</rb><rp>（</rp><rt>やさ</rt><rp>）</rp></ruby>しさを<ruby><rb>好意</rb><rp>（</rp><rt>こうい</rt><rp>）</rp></ruby>と<ruby><rb>勘違</rb><rp>（</rp><rt>かんちが</rt><rp>）</rp></ruby>いしているらしい。
+                                        </p>
+                                        <span>Түүний эелдэг занг ханд өгч байна гэж буруу ойлгосон бололтой.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Thirteenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        13
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word13.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word13" class="text-danger">根も葉もない</small></h5>
+                                        <small id="furigana13">ねもはもない</small>
+                                        <br>
+                                        <span id="meaning13">Үндэслэлгүй, баримтгүй</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>らが<ruby><rb>付き合</rb><rp>（</rp><rt>つきあ</rt><rp>）</rp></ruby>っているなんて、<ruby><rb>根</rb><rp>（</rp><rt>ね</rt><rp>）</rp></ruby>も<ruby><rb>葉</rb><rp>（</rp><rt>は</rt><rp>）</rp></ruby>もないうわさだ。
+                                        </p>
+                                        <span>Тэд болзож байгаа гэдэг нь үндэслэлгүй цуу яриа.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Fourteenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        14
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word14.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word14" class="text-danger">初耳</small></h5>
+                                        <small id="furigana14">はつみみ</small>
+                                        <br>
+                                        <span id="meaning14">Анх сонсож байна</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            あの<ruby><rb>二人</rb><rp>（</rp><rt>ふたり</rt><rp>）</rp></ruby>が<ruby><rb>姉妹</rb><rp>（</rp><rt>しまい</rt><rp>）</rp></ruby>とは<ruby><rb>初耳</rb><rp>（</rp><rt>はつみみ</rt><rp>）</rp></ruby>だ。
+                                        </p>
+                                        <span>Тэр хоёр эгч дүүс гэдгийг анх сонсож байна.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Fifteenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        15
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word15.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word15" class="text-danger">惑わす</small></h5>
+                                        <small id="furigana15">まどわす</small>
+                                        <br>
+                                        <span id="meaning15">Төөрөлдүүлэх, будлиулах</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>周囲</rb><rp>（</rp><rt>しゅうい</rt><rp>）</rp></ruby>の<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>たちが、<ruby><rb>彼</rb><rp>（</rp><rt>かのじょ</rt><rp>）</rp></ruby>の<ruby><rb>魅力</rb><rp>（</rp><rt>みりょく</rt><rp>）</rp></ruby>に<ruby><rb>惑</rb><rp>（</rp><rt>まど</rt><rp>）</rp></ruby>わされている。
+                                        </p>
+                                        <span>Эргэн тойрны хүмүүс түүний уран татах хүчинд автагдсан байна.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Sixteenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        16
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word16.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word16" class="text-danger">早口</small></h5>
+                                        <small id="furigana16">はやくち</small>
+                                        <br>
+                                        <span id="meaning16">Хурдан ярих, түргэн ярих</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼女</rb><rp>（</rp><rt>かのじょ</rt><rp>）</rp></ruby>は<ruby><rb>早口</rb><rp>（</rp><rt>はやくち</rt><rp>）</rp></ruby>で、<ruby><rb>時々</rb><rp>（</rp><rt>ときどき</rt><rp>）</rp></ruby><ruby><rb>何</rb><rp>（</rp><rt>なに</rt><rp>）</rp></ruby>を<ruby><rb>言</rb><rp>（</rp><rt>い</rt><rp>）</rp></ruby>っているか<ruby><rb>分</rb><rp>（</rp><rt>わ</rt><rp>）</rp></ruby>からない。
+                                        </p>
+                                        <span>Тэр хурдан ярьдаг учраас заримдаа юу гэж байгааг нь ойлгодоггүй.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Seventeenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        17
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word17.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word17" class="text-danger">生やす</small></h5>
+                                        <small id="furigana17">はやす</small>
+                                        <br>
+                                        <span id="meaning17">Ургуулах (сахал)</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>男</rb><rp>（</rp><rt>おとこ</rt><rp>）</rp></ruby>の<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>はひげ<ruby><rb>生</rb><rp>（</rp><rt>は</rt><rp>）</rp></ruby>やすと、イメージが<ruby><rb>大</rb><rp>（</rp><rt>おお</rt><rp>）</rp></ruby>きく<ruby><rb>変</rb><rp>（</rp><rt>か</rt><rp>）</rp></ruby>わる。
+                                        </p>
+                                        <span>Эрэгтэй хүн сахал ургуулахад дүр төрх нь их өөрчлөгддөг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Eighteenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        18
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word18.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word18" class="text-danger">いじる</small></h5>
+                                        <small id="furigana18">いじる</small>
+                                        <br>
+                                        <span id="meaning18">Хөдөлгөх, хүрэх, оролдох</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            あの<ruby><rb>子</rb><rp>（</rp><rt>こ</rt><rp>）</rp></ruby>はいつも<ruby><rb>髪の毛</rb><rp>（</rp><rt>かみのけ</rt><rp>）</rp></ruby>をいじっている。
+                                        </p>
+                                        <span>Тэр хүүхэд үргэлж үсээ оролдож байдаг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Nineteenth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        19
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word19.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word19" class="text-danger">揺する</small></h5>
+                                        <small id="furigana19">ゆする</small>
+                                        <br>
+                                        <span id="meaning19">Сэгсрэх, хөдөлгөх</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>知人</rb><rp>（</rp><rt>ちじん</rt><rp>）</rp></ruby>の<ruby><rb>体</rb><rp>（</rp><rt>からだ</rt><rp>）</rp></ruby>を<ruby><rb>揺</rb><rp>（</rp><rt>ゆ</rt><rp>）</rp></ruby>する<ruby><rb>癖</rb><rp>（</rp><rt>くせ</rt><rp>）</rp></ruby>が<ruby><rb>気</rb><rp>（</rp><rt>き</rt><rp>）</rp></ruby>になってしかたない。
+                                        </p>
+                                        <span>Танил хүний биеэ сэгсрэх зуршил нь сэтгэл зовоож байна.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Twentieth Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        20
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word20.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word20" class="text-danger">心得る</small></h5>
+                                        <small id="furigana20">こころえる</small>
+                                        <br>
+                                        <span id="meaning20">мэдэх, ойлгох</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>らは<ruby><rb>大人</rb><rp>（</rp><rt>おとな</rt><rp>）</ruby>としてのマナー<ruby><rb>心得</rb><rp>（</rp><rt>こころえ</rt><rp>）</rp></ruby>ている。
+                                        </p>
+                                        <span>Тэд насанд хүрсэн хүний ёс зүйг мэддэг.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Twenty-first Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        21
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word21.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word21" class="text-danger">欠く</small></h5>
+                                        <small id="furigana21">かく</small>
+                                        <br>
+                                        <span id="meaning21">Дутах, дутагдах</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>礼儀</rb><rp>（</rp><rt>れいぎ</rt><rp>）</rp></ruby>を<ruby><rb>欠</rb><rp>（</rp><rt>か</rt><rp>）</rp></ruby>くような<ruby><rb>人</rb><rp>（</rp><rt>ひと</rt><rp>）</rp></ruby>とは<ruby><rb>関</rb><rp>（</rp><rt>かか</rt><rp>）</rp></ruby>わりたくない。
+                                        </p>
+                                        <span>Ёс зүйн дутагдалтай хүнтэй харьцахыг хүсэхгүй байна.</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Twenty-second Word -->
+                                <tr>
+                                    <th scope="row" class="d-none d-sm-block text-center">
+                                        22
+                                        <br>
+                                        <!-- <button type="button" class="btn btn-link playWordSound" value="sound/word22.mp3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle text-primary" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                                            </svg>
+                                        </button> -->
+                                    </th>
+                                    <td>
+                                        <h5><small id="word22" class="text-danger">おもむろに</small></h5>
+                                        <small id="furigana22">おもむろに</small>
+                                        <br>
+                                        <span id="meaning22">Аажим, удаан</span>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <ruby><rb>彼</rb><rp>（</rp><rt>かれ</rt><rp>）</rp></ruby>はおもむろに<ruby><rb>右手</rb><rp>（</rp><rt>みぎて</rt><rp>）</rp></ruby>を<ruby><rb>出</rb><rp>（</rp><rt>だ</rt><rp>）</rp></ruby>して、<ruby><rb>握手</rb><rp>（</rp><rt>あくしゅ</rt><rp>）</rp></ruby>を<ruby><rb>求</rb><rp>（</rp><rt>もと</rt><rp>）</rp></ruby>めた。
+                                        </p>
+                                        <span>Тэр аажмаар баруун гараа гаргаж, гар барихыг хүсэв.</span>
+                                    </td>
+                                </tr>
+
+                                
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" 
+        crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        $(function() {
+            // Show/Hide Furigana
+            $("#showFurigana").change(function() {
+                var $wrapper = $('#vocabularyTable');
+                if ($(this).prop("checked") == true) {
+                    $wrapper.removeClass('is-no-ruby');
+                } else {
+                    $wrapper.addClass('is-no-ruby');
+                }
+            });
+
+            // Play Sound
+            var audio;
+            $('.playWordSound').on('click', async function() {
+                if (audio) {
+                    audio.pause();
+                }
+                var value = $(this).attr('value');
+                audio = new Audio(value);
+                await audio.play();
+            });
+
+            // Hide/Show Vocabulary, Furigana, Meaning
+            $('#hide-word').on('click', function() {
+                $('#hide-word').toggleClass('btn-dark').toggleClass('btn-secondary');
+                $('[id^="word"]').toggleClass('hide-word');
+            });
+
+            $('#hide-furigana').on('click', function() {
+                $('#hide-furigana').toggleClass('btn-dark').toggleClass('btn-secondary');
+                $('[id^="furigana"]').toggleClass('hide-furigana');
+            });
+
+            $('#hide-meaning').on('click', function() {
+                $('#hide-meaning').toggleClass('btn-dark').toggleClass('btn-secondary');
+                $('[id^="meaning"]').toggleClass('hide-meaning');
+            });
+
+            $('#show-all').on('click', function() {
+                $('#hide-word').removeClass('btn-dark').addClass('btn-secondary');
+                $('#hide-furigana').removeClass('btn-dark').addClass('btn-secondary');
+                $('#hide-meaning').removeClass('btn-dark').addClass('btn-secondary');
+                $('[id^="word"]').removeClass('hide-word');
+                $('[id^="furigana"]').removeClass('hide-furigana');
+                $('[id^="meaning"]').removeClass('hide-meaning');
+            });
+        });
+    </script>
+
+    <!-- Footer
+    <footer class="bd-footer mt-5 bg-light">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="/" aria-label="Kittokatsu">
+                        <span class="fs-5">Kittokatsu</span>
+                    </a>
+                    <ul class="list-unstyled small text-muted">
+                        <li class="mb-2">Япон хэл сурах платформ</li>
+                        <li class="mb-2">Хувилбар v1.0</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Холбоосууд</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/index.html">Нүүр</a></li>
+                        <li class="mb-2"><a href="/lesson1-1.html">Хичээл 1-1</a></li>
+                        <li class="mb-2"><a href="/lesson1-2.html">Хичэ��л 1-2</a></li>
+                        <li class="mb-2"><a href="/lesson1-3.html">Хичээл 1-3</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Хэрэглэгчид</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/about.html">Бидний тухай</a></li>
+                        <li class="mb-2"><a href="/contact.html">Холбоо барих</a></li>
+                        <li class="mb-2"><a href="/privacy.html">Нууцлалын бодлого</a></li>
+                        <li class="mb-2"><a href="/terms.html">Үйлчилгээний нөхцөл</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Нэмэлт</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/blog">Блог</a></li>
+                        <li class="mb-2"><a href="/news">Мэдээ</a></li>
+                        <li class="mb-2"><a href="/faq">Түгээмэл асуултууд</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Сошиал</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="https://www.facebook.com/profile.php?id=61563614079853" target="_blank" rel="noopener" class="text-decoration-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                                </svg>
+                                <!-- <span class="ml-1">Facebook</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://www.youtube.com/@kittokatsupro" target="_blank" rel="noopener" class="text-decoration-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                                </svg>
+                                <span class="ml-1">Youtube</span>
+                            </a>
+                        </li>
+                        <!-- <li class="mb-2">
+                            <a href="https://instagram.com/kittokatsu" target="_blank" rel="noopener" class="text-decoration-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                                </svg>
+                                <span class="ml-1">Instagram</span>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer> 
+
+    <!-- Copyright -->
+    <div class="container">
+        <hr class="my-4">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left small">
+                <span>© 2024 Kittokatsu.pro</span>
+                <span class="mx-1">·</span>
+                <span>Бүх эрх хуулиар хамгаалагдсан</span>
+            </div>
+            <div class="col-md-6 text-center text-md-right small">
+                <a href="/privacy.html" class="text-decoration-none">Нууцлалын бодлого</a>
+                <span class="mx-1">·</span>
+                <a href="/terms.html" class="text-decoration-none">Үйлчилгээний нөхцөл</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup
+    <div class="container">
+        <hr class="my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h5>Мэдээллийн товхимол</h5>
+                <p class="text-muted">
+                    Шинэ хичээл, мэдээ мэдээлэл авахыг хүсвэл бүртгүүлээрэй.
+                </p>
+                <form class="form-inline justify-content-center">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="newsletterEmail" class="sr-only">И-мэйл</label>
+                        <input type="email" class="form-control" id="newsletterEmail" placeholder="И-мэйл хаяг">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Бүртгүүлэх</button>
+                </form>
+                <small class="form-text text-muted">
+                    Бид таны мэдээллийг хэзээ ч бусадтай хуваалцахгүй.
+                </small>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="btn btn-primary rounded-circle position-fixed" style="bottom: 20px; right: 20px; display: none; z-index: 1000;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
+    </button>
 </body>
 </html>
